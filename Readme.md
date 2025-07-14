@@ -232,7 +232,7 @@ This project is open-source and free to use for learning purposes.
 ## 👤 Author
 
 **RUSHIKESH RODE**  
-📧 Email: rushikeshrode@example.com  
+📧 Email: rushikeshrode01@gmail.com  
 💼 LinkedIn: [Rushikesh Rode](https://www.linkedin.com/in/rushikesh-rode-097572312)  
 💻 GitHub: [Rushikesh Rode](https://github.com/rushikeshrode)  
 🌐 Portfolio: [Rushikesh Rode](https://rushikeshrode.github.io/Rushikesh-s-Portfolio/)   
