@@ -23,7 +23,8 @@ public class TeacherController {
 
     @GetMapping("{id}")
     public ResponseEntity<?> retrieveTeacherById(@PathVariable int id){
-        return ResponseEntity.ok(teacherService.getTeacherById(id));
+        Teacher teacherById = teacherService.getTeacherById(id);
+        return ResponseEntity.ok(teacherById);
     }
 
     @DeleteMapping("{id}")

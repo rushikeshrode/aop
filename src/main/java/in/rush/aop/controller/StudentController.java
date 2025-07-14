@@ -23,6 +23,8 @@ public class StudentController {
     @GetMapping("{id}")
     public ResponseEntity<?> retrieveStudentById(@PathVariable int id){
         Student studentById = studentService.getStudentById(id);
+        if (studentById.getId() == -1)
+            return ResponseEntity.badRequest().body("Student not Found at : " + id);
         return ResponseEntity.ok(studentById);
     }
 
@@ -36,9 +38,8 @@ public class StudentController {
 
     @PostMapping("add")
     public ResponseEntity<?> addStudent(@RequestBody Student newStudent){
-        if (studentService.addStudent(newStudent)){
+        if (studentService.addStudent(newStudent))
             return new ResponseEntity<>(HttpStatus.CREATED);
-        }
         return ResponseEntity.badRequest().build();
     }
 }

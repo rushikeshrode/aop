@@ -1,29 +1,35 @@
 package in.rush.aop.configAOP;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 @Aspect
 public class TeacherAOP {
 
-    // executes between the method-call. method needs an explicit calling : pjp.proceed()
+    // executes between the method-call. method needs an explicit calling & handling.
+    // calling : proceedingJoinPoint.proceed(); @Around advice does not return the result of proceed().
+    // handling : Return the actual response
 
     @Around("execution(* in.rush.aop.controller.TeacherController.*(..))")
-    public String logAround(ProceedingJoinPoint proceedingJoinPoint)  {
+    public Object logAround(ProceedingJoinPoint proceedingJoinPoint)  {
 
         String methodName = proceedingJoinPoint.getSignature().getName();
-        System.out.println("TeacherAOP.class :: RUNNING... 🌐 " + methodName);
+        log.info("TeacherAOP.class :: RUNNING... 🔄 {}", methodName);
 
+        Object response;
         try {
-//            int tryingError = 3/0;
-            proceedingJoinPoint.proceed();
+            response = proceedingJoinPoint.proceed();
         } catch (Throwable e) {
-            return "Error while executing ❌ : " + methodName;
+            log.error("Error while executing ❌ : {}", methodName);
+            return null;
         }
-        return "TeacherAOP.class :: Method executed SUCCESS 🌐 " + methodName;
+        log.info("TeacherAOP.class :: Method executed SUCCESS ✅ {}", methodName);
+        return response;
     }
 
 }

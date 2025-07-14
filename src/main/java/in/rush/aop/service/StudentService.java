@@ -35,6 +35,7 @@ public class StudentService {
     }
 
     public Student getStudentById(int id){
+        if (id < 0 || id > studentList.size())  return new Student(-1, "null", "null", "null");
         return studentList.get(id - 1);
     }
 
